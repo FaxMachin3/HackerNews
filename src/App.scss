@@ -27,9 +27,43 @@ header {
     font-weight: $font-weight;
     color: $primary-color;
 
+    .hamburger {
+        z-index: 10;
+
+            .line{
+                width: 50px;
+                height: 5px;
+                background-color: $primary-color;
+                border-radius: 2px;
+                display: block;
+                margin: 8px auto;
+                -webkit-transition: all 0.3s ease-in-out;
+                -o-transition: all 0.3s ease-in-out;
+                transition: all 0.3s ease-in-out;
+        }
+        &:hover{
+            cursor: pointer;
+          }
+    }
+
     ul {
         list-style: none;
         display: none;
+        
+
+        &.is-active {
+            height: 100vh;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.70);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
 
         li {
             cursor: pointer;
@@ -66,7 +100,7 @@ header {
     .content {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-evenly;
 
         h4 {
             a {
@@ -82,6 +116,7 @@ header {
         .description {
             font-size: 0.75rem;
             color: $secondary-color;
+
             button {
                 display: inline-block;
                 border: none;
@@ -100,14 +135,41 @@ header {
     }
 }
 
+// copied from codepen
+#hamburger-6.is-active{
+    transition: all 0.3s ease-in-out;
+    transition-delay: 0.6s;
+    transform: rotate(45deg);
+  }
+  
+  #hamburger-6.is-active .line:nth-child(2){
+    width: 0px;
+  }
+  
+  #hamburger-6.is-active .line:nth-child(1),
+  #hamburger-6.is-active .line:nth-child(3){
+    transition-delay: 0.3s;
+  }
+  
+  #hamburger-6.is-active .line:nth-child(1){
+    transform: translateY(13px);
+  }
+  
+  #hamburger-6.is-active .line:nth-child(3){
+    transform: translateY(-13px) rotate(90deg);
+  }
+
 @media only screen and (min-width: 768px) {
     #root {
         margin: 0 4em;
     }
     header {
+        .hamburger{
+            display: none;
+        }
         ul {
             display: flex;
-            justify-content: space-around;
+            flex-direction: row;
 
             li {
                 margin: 0 0 0 2em;
