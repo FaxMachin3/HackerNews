@@ -1,3 +1,9 @@
+$border-radius: 3px;
+$primary-color: #ff5733;
+$secondary-color: #6c6c6c;
+$font-weight: 600;
+$box-shadow: 1px 3px 5px 1px rgba(0, 0, 0, 0.10);
+
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +15,6 @@
 }
 
 .loader {
-    // background-color: teal;
     display: flex;
     justify-content: center;
 }
@@ -19,11 +24,16 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-weight: $font-weight;
+    color: $primary-color;
+
     ul {
         list-style: none;
         display: none;
+
         li {
             cursor: pointer;
+
             &:hover {
                 text-decoration: underline;
             }
@@ -33,11 +43,23 @@ header {
 
 .news-item {
     display: flex;
+    margin: 0 0 2em 0;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+
     .votes {
         display: flex;
         flex-direction: column;
         margin: 0 1em;
+        color: $secondary-color;
+
         .vote {
+            display: inline-block;
+            border: none;
+            background: transparent;
+            color: inherit;
+            font: inherit;
+            outline: none;
             cursor: pointer;
         }
     }
@@ -48,15 +70,28 @@ header {
 
         h4 {
             a {
+                color: $primary-color;
+                font-weight: $font-weight;
                 text-decoration: none;
+
                 &:hover {
                     text-decoration: underline;
                 }
             }
         }
         .description {
-            span {
+            font-size: 0.75rem;
+            color: $secondary-color;
+            button {
+                display: inline-block;
+                border: none;
+                background: transparent;
+                color: inherit;
+                font: inherit;
+                outline: none;
+                text-decoration: none;
                 cursor: pointer;
+
                 &:hover {
                     text-decoration: underline;
                 }
@@ -73,6 +108,7 @@ header {
         ul {
             display: flex;
             justify-content: space-around;
+
             li {
                 margin: 0 1em;
             }

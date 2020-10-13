@@ -7,29 +7,41 @@ function NewsItem({ data, meta, hideNews, countVotes }) {
         else return Math.round(timeElapsed) + " hours";
     };
 
-    if (meta && !meta[data.objectID].hide) {
-    return (
-        <div className="news-item">
-            <div className="votes">
-                <span className="vote" onClick = {() => countVotes(data.objectID, 0)}>&#9652;</span>
-                {meta[data.objectID].votes}
-                <span className="vote" onClick = {() => countVotes(data.objectID, 1)}>&#9662;</span>
-            </div>
-            <div className="content">
-                <h4>
-                    <a href={data.url} target="__blank">
-                        {data.title}
-                    </a>
-                </h4>
-                <div className="description">
-                    {data.points} points by {data.author}{" "}
-                    {calculateTime(data.created_at)} ago |{" "}
-                    <span onClick={() => hideNews(data.objectID)}>hide</span>{" "}
-                    | {data.num_comments} comments
+    if (meta && meta[data.objectID] && !meta[data.objectID].hide) {
+        return (
+            <div className="news-item">
+                <div className="votes">
+                    <button
+                        className="vote"
+                        onClick={() => countVotes(data.objectID, 0)}
+                    >
+                        &#9652;
+                    </button>
+                    {meta[data.objectID].votes}
+                    <button
+                        className="vote"
+                        onClick={() => countVotes(data.objectID, 1)}
+                    >
+                        &#9662;
+                    </button>
+                </div>
+                <div className="content">
+                    <h4>
+                        <a href={data.url} target="__blank">
+                            {data.title}
+                        </a>
+                    </h4>
+                    <div className="description">
+                        {data.points} points by {data.author}{" "}
+                        {calculateTime(data.created_at)} ago |{" "}
+                        <button onClick={() => hideNews(data.objectID)}>
+                            hide
+                        </button>{" "}
+                        | {data.num_comments} comments
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
     } else return null;
 }
 

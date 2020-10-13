@@ -8,35 +8,35 @@ function News() {
     const [meta, setMeta] = useState(null);
 
     const hideNews = (id) => {
-        if(meta) {
+        if (meta) {
             let temp = meta;
             temp[id].hide = true;
             const update = temp[id];
-            setMeta(prevData => {
+            setMeta((prevData) => {
                 return {
                     ...prevData,
-                    update
-                }
-            })
+                    update,
+                };
+            });
         }
     };
 
     const countVotes = (id, flag) => {
-        if(meta) {
+        if (meta) {
             let temp = meta;
             flag ? temp[id].votes-- : temp[id].votes++;
             const update = temp[id];
-            setMeta(prevData => {
+            setMeta((prevData) => {
                 return {
                     ...prevData,
-                    update
-                }
-            })
+                    update,
+                };
+            });
         }
-    }
+    };
 
     useEffect(() => {
-        localStorage.setItem("metaData", JSON.stringify(meta));
+        meta && localStorage.setItem("metaData", JSON.stringify(meta));
         return () => {
             // cleanup
         };
@@ -49,8 +49,10 @@ function News() {
             .then((data) => {
                 setLoading(false);
                 setState(data);
-                let md = {}
-                data.hits.forEach(e => md[e.objectID] = {hide: false, votes: 0})
+                let md = {};
+                data.hits.forEach(
+                    (e) => (md[e.objectID] = { hide: false, votes: 0 })
+                );
                 metaData ? setMeta(metaData) : setMeta(md);
             })
             .catch((err) => {
