@@ -1,12 +1,13 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 function Header() {
+    const [large, setLarge] = useState(window.innerWidth > 768 ? true : false)
     const hamburger = useRef(null);
     const linkContainer = useRef(null);
 
     const toggleClass = () => {
-        hamburger.current.classList.toggle("is-active");
-        linkContainer.current.classList.toggle("is-active");
+        !large && hamburger.current.classList.toggle("is-active");
+        !large && linkContainer.current.classList.toggle("is-active");
     }
 
     useEffect(() => {
@@ -14,6 +15,7 @@ function Header() {
         const handleResize = () => {
             clearTimeout(timer);
             timer = setTimeout(() => {
+                setLarge(window.innerWidth > 768 ? true : false)
                 hamburger.current.classList.remove("is-active");
                 linkContainer.current.classList.remove("is-active");
             }, 300);
