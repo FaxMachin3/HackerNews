@@ -53,7 +53,10 @@ function News() {
                 data.hits.forEach(
                     (e) => (md[e.objectID] = { hide: false, votes: 0 })
                 );
-                metaData ? setMeta(metaData) : setMeta(md);
+                if (metaData) {
+                    md = { ...metaData, ...md };
+                }
+                setMeta(md);
             })
             .catch((err) => {
                 setLoading(true);
