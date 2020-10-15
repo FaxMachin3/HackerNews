@@ -54,7 +54,7 @@ function News() {
                     (e) => (md[e.objectID] = { hide: false, votes: 0 })
                 );
                 if (metaData) {
-                    md = { ...metaData, ...md };
+                    md = { ...md, ...metaData };
                 }
                 setMeta(md);
             })
